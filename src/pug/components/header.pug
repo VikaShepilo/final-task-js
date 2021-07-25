@@ -17,10 +17,18 @@ header.header-top
                 button.search__btn
                     img(src="./assets/imgs/lupa.svg", alt="lupa")
                 input(type="text" placeholder="Поиск").search__field
-            .enter
+            .enter(onClick="hideShow();")
                 a(href="#") Вход
                 span /
                 a(href="#") Регистрация
+            div(id="prompt-form-container")
+                form.prompt-form
+                    span.prompt-text Вход / Регистрация
+                    div.prompt-message
+                        input(name="email" type="email" placeholder="Введите email").prompt-email
+                        input(name="password" type="password" placeholder="Введите пароль").prompt-password
+                        input(type="button" value="Вход" ).prompt-button1
+                        input(type="button" value="Регистрация").prompt-button2
             a(href="#").header-top__personal
                 img(src="./assets/imgs/people.svg", alt="people").header__img
             a(href="#").header-top__favourite

@@ -545,3 +545,41 @@
         justify-content: center;
     }
 }
+
+
+.prompt-form {
+    width: 300px;
+    background: white;
+    padding: 2rem 2rem 2rem 2rem;
+    font-family: $body-font;
+    font-size: 1rem;
+    line-height: 150%;
+    color: $c-add;
+  }
+  
+#prompt-form-container {
+    display: none;
+    position: fixed;
+    left: 42%;
+    top: 10rem;
+  }
+
+  
+.cover-div {
+  }
+.prompt-text  {
+    
+}
+.prompt-email {
+    margin: 1rem 0rem 1rem 0rem;
+
+}
+.prompt-password {
+    margin-bottom: 1rem;
+}
+.prompt-button1 {
+    padding: 0rem 1rem 0rem 0rem;
+}
+.prompt-button2 {
+    padding: 0rem 0rem 0rem 1rem;
+}
