@@ -1,0 +1,138 @@
+// для каждого компонента нужно импортить переменные, чтобы их использовать
+@import '../mixins/mixins';
+@import "../main/parameters";
+
+.header-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  margin: 4.3rem 0;
+  &__inner {
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+  }
+
+  &__personal {
+    margin-left: 2rem;
+  }
+
+  &__favourite {
+    margin-left: 1rem;
+  }
+}
+
+.logo {
+  display: inline-block;
+  margin: 0 0 0 4rem;
+  img {
+    max-width: 100%;
+  }
+}
+
+.search {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+
+    &__btn {}
+
+    input[type="text"].search__field {
+        font-family: inherit;
+        background: rgba(0,0,0,0.0);
+        color: #fff;
+        font-size: 1rem;
+        border: 0;
+        max-width: 5rem;
+
+        &::placeholder {
+            color: #fff;
+        }
+    }
+}
+.search {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+
+  img {}
+  span {
+    font-size: 1rem;
+    color: #fff;
+    padding-left: 1rem;
+  }
+}
+
+.enter {
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+
+  span {
+    padding: 0 0.5rem;
+  }
+  a {
+    color: inherit;
+    font-size: 1rem;
+  }
+}
+
+.header {
+  background:url(./../imgs/fon.jpg);
+  background-repeat:no-repeat;
+  background-position: center top;
+  padding-top: 10rem;//высота шапки
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 100vh;
+  background-size: cover;
+  &__m {
+    
+  }
+  &__zag {
+    margin-bottom: 2rem;
+    font-family: $add-font;
+    font-size: 2.57rem;
+    line-height: 3.5rem;
+    height: 3.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .botton {
+    margin-bottom: 3.5rem;
+  }
+
+  &__firms {
+    width: 100%;
+    border-top: 1px solid #FFFFFF;
+  }
+
+  &__firms-inner {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.second__col {
+  margin: 1rem 0;
+  max-width: 20%;
+  flex: 1 0 20%;
+}
+
+.firm {
+  padding: 1rem 0;
+  text-align: center;
+  &__img {
+    max-width: 100%;
+  }
+}
+
+.second__col:not(:last-child) {
+  border-right: 1px solid #FFFFFF;
+}

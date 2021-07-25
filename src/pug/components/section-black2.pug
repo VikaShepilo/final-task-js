@@ -1,0 +1,20 @@
+section.section.section__black
+    .container2
+        .section__black-text1 Полезные советы и персональный предложения
+        h2.section__black-text2 Эксклюзивная рассылка
+        .section__numandpoisk
+            .section__num
+                mixin num(text)
+                    .second__col2
+                        .num
+                            a(href="#").section__n
+                                img(src="./assets/imgs/num.png", alt="num" width="18")
+                                span.section__numtext=text
+                +num('Личный менеджер')
+                +num('Доставка и оформление')
+                +num('Индивидуальный дизайн')
+            .section__poisk
+                .section__poiskbox
+                    .section__poiskbox2
+                        input(type="email" placeholder="ВАШ E-MAIL").section__poiskline
+                        input(type="submit" value="ОТПРАВИТЬ" class="btn btn-dark").section__btn

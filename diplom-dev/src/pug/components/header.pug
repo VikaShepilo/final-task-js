@@ -1,0 +1,44 @@
+header.header-top
+    .container
+        .header-top__inner
+            nav.nav
+                ul.nav__list
+                    li.nav__item
+                        a(href="#").nav__link  Контрагентам
+                    li.nav__item
+                        a(href="#").nav__link  Дизайнерам
+                    li.nav__item
+                        a(href="#").nav__link  Вакансии
+            .dropdown
+                img(src="./assets/imgs/menu.png", alt="menu" width="50")
+            a(href="index.html").logo
+                img(src="./assets/imgs/logotip.svg", alt="OJJO")
+            form(action="#").search
+                button.search__btn
+                    img(src="./assets/imgs/lupa.svg", alt="lupa")
+                input(type="text" placeholder="Поиск").search__field
+            .enter
+                a(href="#") Вход
+                span /
+                a(href="#") Регистрация
+            a(href="#").header-top__personal
+                img(src="./assets/imgs/people.svg", alt="people").header__img
+            a(href="#").header-top__favourite
+                img(src="./assets/imgs/love.svg", alt="love").header__1img
+header.header
+    .container
+        .header__m
+            h1.header__zag Долго, дорого, богато!
+            a( href="#" type="button" class="btn btn-secondary btn-lg").botton каталог изделий
+    .header__firms
+        .container
+            .header__firms-inner
+                mixin firm(img)
+                    .second__col
+                        .firm
+                            img(src=img, alt="firm").firm__img
+                +firm('./assets/imgs/firm.png')
+                +firm('./assets/imgs/firm.png')
+                +firm('./assets/imgs/firm.png')
+                +firm('./assets/imgs/firm.png')
+                +firm('./assets/imgs/firm.png')

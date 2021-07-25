@@ -1,0 +1,22 @@
+@mixin btn {
+    display: inline-block;
+    font-size: 1.4rem;
+    border-radius: 4rem;
+    padding: 1rem 2.5rem;
+    border: 0.2rem solid;
+}
+
+@mixin title {
+    font-weight: bold;
+    font-size: 2.4rem;
+    line-height: 1.2;
+    color: #000000;
+}
+
+@mixin firm {
+
+}
+
+@mixin impuls {
+    
+}
