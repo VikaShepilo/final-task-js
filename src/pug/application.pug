@@ -1,0 +1,27 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title OJJO 
+        link(rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png")
+        link(rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png")
+        link(rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png")
+        link(rel="manifest" href="./favicon/site.webmanifest")
+        link(rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5")
+        meta(name="msapplication-TileColor" content="#da532c")
+        meta(name="theme-color" content="#ffffff")
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous")
+        link(rel="stylesheet", href="./assets/css/app.css")
+    body.wrapper    
+        div(id="prompt-form-container")
+            form.prompt-form
+                span.prompt-text Вход / Регистрация
+                div.prompt-message
+                    input(name="email" type="email" placeholder="Введите email" required).prompt-email
+                    input(name="password" type="password" placeholder="Введите пароль").prompt-password
+                    input(type="submit" value="Вход" ).prompt-button1
+                    input(type="submit" value="Регистрация").prompt-button2
+        
+        script(src="./assets/js/app.js")

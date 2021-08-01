@@ -558,13 +558,9 @@
   }
   
 #prompt-form-container {
-    display: none;
-    position: fixed;
-    left: 42%;
-    top: 10rem;
-  }
-
-  
+    position: absolute;
+    left: 43%;
+} 
 .cover-div {
   }
 .prompt-text  {
