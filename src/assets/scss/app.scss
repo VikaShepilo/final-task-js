@@ -547,35 +547,69 @@
 }
 
 
-.prompt-form {
+
+.containerAppendix {
+    width: 100%;
+    max-width: 1110px;
+    padding: 0 15px;
+    margin:  0 auto;
+    text-align: center;
+    color: $c-add;
+}
+.allforms {
+    background: $c-add;
     width: 300px;
-    background: white;
-    padding: 2rem 2rem 2rem 2rem;
     font-family: $body-font;
     font-size: 1rem;
     line-height: 150%;
-    color: $c-add;
-  }
-  
-#prompt-form-container {
     position: absolute;
     left: 43%;
+}
+.prompt-form,
+.prompt-form2 {
+    background: white;
+    width: 300px;
+    padding: 2rem 2rem 2rem 2rem;
+    color: $c-add;
+  }
+#prompt-form-container {
 } 
 .cover-div {
   }
 .prompt-text  {
     
 }
-.prompt-email {
+.prompt-email,
+.prompt-email-registration {
     margin: 1rem 0rem 1rem 0rem;
 
 }
-.prompt-password {
+.prompt-password,
+.prompt-password2,
+.prompt-password-registration,
+.prompt-password2-registration {
     margin-bottom: 1rem;
 }
 .prompt-button1 {
-    padding: 0rem 1rem 0rem 0rem;
+
 }
 .prompt-button2 {
-    padding: 0rem 0rem 0rem 1rem;
+    
+}
+.tab{
+    align-items: center;
+    display: inline-block;
+    margin: 10px;
+    cursor: default;
+  }
+.content{
+    width: 130px;
+  }
+.none{
+    display: none;
+  }
+.err{
+    display: none;
+    font-size: 1rem;
+    color: red;
 }

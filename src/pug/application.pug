@@ -14,14 +14,40 @@ html(lang="en")
         meta(name="theme-color" content="#ffffff")
         link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous")
         link(rel="stylesheet", href="./assets/css/app.css")
-    body.wrapper    
-        div(id="prompt-form-container")
-            form.prompt-form
-                span.prompt-text Вход / Регистрация
-                div.prompt-message
-                    input(name="email" type="email" placeholder="Введите email" required).prompt-email
-                    input(name="password" type="password" placeholder="Введите пароль").prompt-password
-                    input(type="submit" value="Вход" ).prompt-button1
-                    input(type="submit" value="Регистрация").prompt-button2
-        
+    body.wrapper 
+        div(class="containerAppendix") 
+            div(class="allforms")  
+                div(class="containerModal")
+                    a(class="tab") Вход
+                    a(class="tab") Регистрация
+                    div(class="content")
+                        div(id="prompt-form-container" class="c")
+                            form.prompt-form
+                                div.prompt-message
+                                    input(name="email" type="email" placeholder="Введите email" required).prompt-email
+                                    input(name="password" type="password" placeholder="Введите пароль").prompt-password
+                                    input(type="submit" value="Вход").prompt-button1 
+                        div(id="prompt-form-container" class="c none")    
+                            form.prompt-form2
+                                div.prompt-message
+                                    input(name="email" type="email" placeholder="Введите email" required).prompt-email-registration
+                                    input(name="password" type="password" placeholder="Введите пароль").prompt-password-registration
+                                    input(name="password" type="password" placeholder="Введите пароль повторно").prompt-password2-registration
+                                    div(class="err") Пароли не совпадают!
+                                    input(type="submit" value="Регистрация").prompt-button2-registration
+            div 
+                div(id="app1") Наибольший возраст:
+                div(id="app2") Наибольший бюджет:
+                div(id="app3") Количество мужчин:
+                div(id="app4") Количество женщин:
+                table(id="app" border="1px")
+                    tr
+                        th Имя
+                        th Компания
+                        th Email
+                        th Телефон
+                        th Баланс
+                        th Дата регистрации
+                        th Удалить
+                button(class="button-top") Вернуться к началу
         script(src="./assets/js/app.js")
