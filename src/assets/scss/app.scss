@@ -580,6 +580,7 @@
     padding: 2rem 2rem 2rem 2rem;
     color: $c-add;
   }
+
 #prompt-form-container {
 } 
 .cover-div {
@@ -604,7 +605,8 @@
 .prompt-button2 {
     
 }
-.tab{
+.tab,
+.tabregistration{
     align-items: center;
     display: inline-block;
     margin: 10px;
@@ -616,7 +618,8 @@
 .none{
     display: none;
   }
-.err{
+.err,
+.errRegistration{
     display: none;
     font-size: 1rem;
     color: red;
