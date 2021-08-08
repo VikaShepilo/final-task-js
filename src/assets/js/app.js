@@ -1,3 +1,58 @@
+function initMap() {
+    var pos = {lat: 53.909129, lng: 27.470102}
+    var pos1 = {lat: 53.908344, lng: 27.484478}
+    var pos2 = {lat: 53.907308, lng: 27.492482}
+
+    var opt = {
+        center: pos1,
+        zoom: 14,
+    };
+
+    var map = new google.maps.Map(document.getElementById("map"), opt);
+
+    var marker = new google.maps.Marker({ 
+        map: map,
+        position: pos,
+        title: "OJJO"
+    });
+
+    var info = new google.maps.InfoWindow({ 
+        content: '<p>ТЦ Скала</p>'
+    });
+
+    marker.addListener("click", function() {
+        info.open(map, marker)
+    });
+
+    var marker1 = new google.maps.Marker({
+        map: map,
+        position: pos1,
+        title: "OJJO"
+    });
+
+    var info1 = new google.maps.InfoWindow({
+        content: '<p>ТЦ Тивали</p>'
+    });
+
+    marker1.addListener("click", function() {
+        info1.open(map, marker1)
+    });
+
+    var marker2 = new google.maps.Marker({
+        map: map,
+        position: pos2,
+        title: "OJJO"
+    });
+
+    var info2 = new google.maps.InfoWindow({
+        content: '<p>Раковский</p>'
+    });
+
+    marker2.addListener("click", function() {
+        info2.open(map, marker2)
+    });    
+}
+
 var tabs = document.querySelectorAll(".tab");
 var con = document.querySelectorAll(".c");
 var temp = con[0];
@@ -9,10 +64,25 @@ var temp = con[0];
     })
 })
 
-// madol window
+
+let allforms = document.querySelector('.allforms');
 let form = document.querySelector('.prompt-form');
 let formRegistration = document.querySelector('.prompt-form2');
-var re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+let re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+let tabledisplay = document.querySelector('.tabledisplay');
+let err = document.querySelector('.err');
+
+document.addEventListener('click', function(event) {
+    if ( event.target.className != '.allforms' ) {
+        allforms.focus();
+        //allforms.style.display = 'none'
+    };
+})
+
+tabledisplay.addEventListener('click', function() {
+    let table = document.querySelector('.table')
+    table.style.display = 'block'
+})
 
 form.addEventListener("submit", function(e){
     e.preventDefault();
@@ -27,13 +97,25 @@ form.addEventListener("submit", function(e){
     }
 })
 
-//нет проверки совпадение паролей
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+    let inputem = document.querySelector('.prompt-email');
+    let inputpas = document.querySelector('.prompt-password');
+    if ((localStorage.getItem("email") == inputem.value) && (localStorage.getItem("password") == inputpas.value)) {
+        allforms.style.display = "none"
+    } else {
+        err.style.display = 'block'
+        err.innerHTML = 'АККАУНТ НЕ НАЙДЕН'
+    }
+})
+
+//нет проверки совпадение паролей!!!
 formRegistration.addEventListener("submit", function(e){
     e.preventDefault();
     let inputem = document.querySelector('.prompt-email-registration');
     let inputpas = document.querySelector('.prompt-password-registration');
     let inputpas2 = document.querySelector('.prompt-password2-registration');
-    let err = document.querySelector('.err');
+
     if (inputpas2.value == '') {
         inputpas2.focus()
     }

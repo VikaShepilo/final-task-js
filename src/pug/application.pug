@@ -16,7 +16,7 @@ html(lang="en")
         link(rel="stylesheet", href="./assets/css/app.css")
     body.wrapper 
         div(class="containerAppendix") 
-            div(class="allforms")  
+            div(class="allforms" id="allforms")  
                 div(class="containerModal")
                     a(class="tab") Вход
                     a(class="tab") Регистрация
@@ -26,6 +26,7 @@ html(lang="en")
                                 div.prompt-message
                                     input(name="email" type="email" placeholder="Введите email" required).prompt-email
                                     input(name="password" type="password" placeholder="Введите пароль").prompt-password
+                                    div(class="err")
                                     input(type="submit" value="Вход").prompt-button1 
                         div(id="prompt-form-container" class="c none")    
                             form.prompt-form2
@@ -33,9 +34,10 @@ html(lang="en")
                                     input(name="email" type="email" placeholder="Введите email" required).prompt-email-registration
                                     input(name="password" type="password" placeholder="Введите пароль").prompt-password-registration
                                     input(name="password" type="password" placeholder="Введите пароль повторно").prompt-password2-registration
-                                    div(class="err") Пароли не совпадают!
+                                    div(class="err")
                                     input(type="submit" value="Регистрация").prompt-button2-registration
-            div 
+            div(class="tabledisplay") Клиенты
+            div(class="table") 
                 div(id="app1") Наибольший возраст:
                 div(id="app2") Наибольший бюджет:
                 div(id="app3") Количество мужчин:

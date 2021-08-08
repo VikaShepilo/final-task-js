@@ -546,6 +546,14 @@
     }
 }
 
+#map {
+    width: 100%;
+    height: 600px;
+    
+  }
+.section__maps {
+    color: $c-add;
+}
 
 
 .containerAppendix {
@@ -612,4 +620,7 @@
     display: none;
     font-size: 1rem;
     color: red;
+}
+.table{
+    display: none;
 }
