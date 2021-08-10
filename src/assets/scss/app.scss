@@ -51,14 +51,19 @@
 }
 
 
-.container {
+.container,
+.aapplication {
+
     width: 100%;
     max-width: 1110px;
     padding: 0 15px;
     margin:  0 auto;
     text-align: center;
+    
 }
-
+.aapplication {
+    font-size: 1rem;
+}
 .container2 {
     width: 100%;
     max-width: 730px;
@@ -561,27 +566,33 @@
     max-width: 1110px;
     padding: 0 15px;
     margin:  0 auto;
-    text-align: center;
+    font-size: 1.4rem;
+    font-family: $body-font;
     color: $c-add;
+    text-align: center;
 }
 .allforms {
+    
     background: $c-add;
-    width: 300px;
-    font-family: $body-font;
-    font-size: 1rem;
+    width: 400px;
     line-height: 150%;
     position: absolute;
-    left: 43%;
+    left: 40%;
 }
 .prompt-form,
 .prompt-form2 {
     background: white;
-    width: 300px;
+    width: 400px;
     padding: 2rem 2rem 2rem 2rem;
     color: $c-add;
   }
 
+.tab-1,
+.tab-2 {
+    margin: 2rem;
+}
 #prompt-form-container {
+
 } 
 .cover-div {
   }
@@ -605,13 +616,13 @@
 .prompt-button2 {
     
 }
-.tab,
-.tabregistration{
-    align-items: center;
-    display: inline-block;
-    margin: 10px;
-    cursor: default;
-  }
+.main,
+.tabledisplay,
+.exit {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+}
 .content{
     width: 130px;
   }
@@ -625,5 +636,19 @@
     color: red;
 }
 .table{
+    font-size: 1rem;
     display: none;
+}
+.allinfo{
+    padding: 3rem 0;
+}
+.divreg{
+    display: none;
+}
+.homepage {
+    padding: 3rem 0;
+    display: flex;
+}
+.exit {
+    color: $c-add;
 }
