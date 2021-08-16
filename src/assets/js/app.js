@@ -57,6 +57,7 @@ let allforms = document.querySelector('.allforms');
 let form = document.querySelector('.prompt-form');
 let formRegistration = document.querySelector('.prompt-form2');
 let re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+let re2 = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 let tabledisplay = document.querySelector('.tabledisplay');
 let table = document.querySelector('.table');
 let main = document.querySelector('.main');
@@ -78,11 +79,11 @@ exit.addEventListener('click', function() {
     document.close()
 })
 
-tab1.addEventListener("click", function(e) {
+tab1.addEventListener("click", function() {
     divreg.style.display = 'none';
     diventer.style.display = 'block';
 })
-tab2.addEventListener("click", function(e) {
+tab2.addEventListener("click", function() {
     diventer.style.display = 'none';
     divreg.style.display = 'block';
 })
@@ -111,18 +112,20 @@ formRegistration.addEventListener("submit", function(e){
     }
     if (inputpasreg.value == '') {
         inputpasreg.focus() 
+        inputpasreg.value == re2.test(String(inputpasreg.value)))
     }
     if (inputemreg.value == ''){
-        inputemreg.focus()
-        inputemreg.value == re.test(String(email))   
+        inputemreg.focus() 
+        inputemreg.value == re.test(String(inputemreg.value)) 
     }
-    if ((inputpasreg.value != inputpas2reg.value) || (inputpasreg.value == '')) {
-        errRegistration.style.display = 'block'
+    // if (inputpasreg.value != re2.test(String(inputpasreg.value))) {
+    //     errRegistration.innerHTML = 'Пароль не верен!'
+    // }
+    if (inputpasreg.value != inputpas2reg.value) {
         errRegistration.innerHTML = 'Пароли не совпадают!'
     }else {
         inputpasreg.value = localStorage.setItem("password", inputpasreg.value)
         inputemreg.value = localStorage.setItem("email", inputemreg.value)
-        errRegistration.style.display = 'block'
         errRegistration.innerHTML = 'Регистрация завершена'
         inputpas2reg.value = ''
         inputpasreg.value = ''
@@ -130,7 +133,7 @@ formRegistration.addEventListener("submit", function(e){
     }
 })
 
-var sBrowser, sUsrAg = navigator.userAgent;
+let sBrowser, sUsrAg = navigator.userAgent;
 if (sUsrAg.indexOf("Firefox") > -1) {
     sBrowser = "Mozilla Firefox";
      //"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0"
@@ -163,7 +166,7 @@ tabledisplay.addEventListener('click', function() {
     table.style.display = 'block';
 })
 
-const url = 'https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1b/raw/677516ee3bd278f7e3d805108596ca431d00b629/db.json'
+let url = 'https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1b/raw/677516ee3bd278f7e3d805108596ca431d00b629/db.json'
 
 let arr = []
 let arrAge = []
@@ -171,8 +174,8 @@ let arrBalance = []
 let male = 0;
 let female = 0;
 
-function convertDate(inputFormat) {
-    let date = inputFormat.substring(0,10)
+function convertDate(inputDate) {
+    let date = inputDate.substring(0,10)
     let d = new Date(date)
     return d.toLocaleDateString()
 }
@@ -182,59 +185,78 @@ function returnMaxAge(age) {
 }
 
 function returnMaxBalance(balance) {
-    let newArrBalance = balance.map(function(mani) {
-        mani = mani.slice(1, 6)
-        mani = Number(mani.replace(/,/gi, '.'))
-        return mani
+    let newArrBalance = balance.map(function(maoney) {
+        maoney = maoney.slice(1, 6)
+        maoney = Number(maoney.replace(/,/gi, '.'))
+        return maoney
     })
     let maxBalance = Math.max.apply(null, newArrBalance)
     maxBalance = '$' + maxBalance
     return maxBalance
 }
 
+
+
 fetch(url)
-    .then(r => r.json())
-    .then(r => {
-        r.forEach((e) => {
-            const el = document.createElement('tr')
-            let arr = e
-            el.innerHTML = `<td>${arr.name} 
-                            <td>${arr.company} 
-                            <td>${arr.email} 
-                            <td>${arr.phone}
-                            <td>${arr.balance} 
-                            <td>${convertDate(arr.registered)} 
-                            <td>
-                                <button class="button-del"> 
-                                    Delete
-                                </button>`           
+    .then(result => result.json())
+    .then(result => {
+        arr = result
+        createTable()
+        function createTable() {
+            arr.forEach((e) => {
+                let el = document.createElement('tr')
+                el.innerHTML = `<td>${e.name} 
+                                <td>${e.company} 
+                                <td>${e.email} 
+                                <td>${e.phone}
+                                <td>${e.balance} 
+                                <td>${convertDate(e.registered)} 
+                                <td>
+                                    <button class="button-del"> 
+                                        Delete
+                                    </button>`           
 
-            document.getElementById('app').appendChild(el)
-            if (arr.isActive == false) el.style.backgroundColor = "#ffe4c4"
+                document.getElementById('app').appendChild(el)
+                if (e.isActive == false) el.style.backgroundColor = "#ffe4c4"
 
-            if (arr.age) arrAge.push(arr.age)
-
-            if (arr.balance) arrBalance.push(arr.balance)
-
-            if (arr.gender == "male") ++male
-            if (arr.gender == "female") ++female
-
-        })
+                returnMaxAge()
+                returnMaxBalance()
+                if (e.gender == "male") ++male
+                if (e.gender == "female") ++female
+                investorDelet()
+            })
+        
+        }
         
         document.getElementById('app1').innerHTML += returnMaxAge(arrAge)
         document.getElementById('app2').innerHTML += returnMaxBalance(arrBalance)
         document.getElementById('app3').innerHTML += male
         document.getElementById('app4').innerHTML += female
 
-        document.querySelectorAll(".button-del").forEach(function(ell) { //перебор детей outerEl.parentElement.removeChild(a)
-            ell.addEventListener('click', function() {
-                if (confirm("Вы хотите удалить элемент со страницы?")) {
-                    let a = this.closest('tr');
-                    a.parentElement.removeChild(a);
-                    }
-                });
-            });
+        function investorDelet() {
+			document.querySelectorAll(".button-del").forEach((elem,indx) => { 
+				elem.addEventListener('click', function () { 
+					if (confirm("Вы хотите удалить элемент со страницы?")) { 
+						this.closest('tr').parentElement.removeChild(a);
+						arr.forEach((e,i) => { 
+							if(indx-1 == i) arr.splice(i,1)
+						})
+						document.getElementById('app').innerHTML = `<td> Имя
+															<td> Компания
+															<td> Email
+															<td> Телефон
+															<td> Баланс
+															<td> Дата регистрации
+															<td> Пол
+															<td> Возраст`
+						document.getElementById('app').style.backgroundColor = "#ffe4c4";
+						createTable() 
+					}
+				})
+			})
+		}
     })
+
 
 let buttonTop = document.querySelector('.button-top')
 buttonTop.addEventListener("click", () => { 

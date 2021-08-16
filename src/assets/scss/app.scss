@@ -602,13 +602,16 @@
 .prompt-email,
 .prompt-email-registration {
     margin: 1rem 0rem 1rem 0rem;
-
+    line-height: revert;
+    height: 2rem;
 }
 .prompt-password,
 .prompt-password2,
 .prompt-password-registration,
 .prompt-password2-registration {
     margin-bottom: 1rem;
+    line-height: revert;
+    height: 2rem;
 }
 .prompt-button1 {
 
@@ -631,7 +634,6 @@
   }
 .err,
 .errRegistration{
-    display: none;
     font-size: 1rem;
     color: red;
 }
