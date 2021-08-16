@@ -43,20 +43,19 @@ html(lang="en")
             div(class="maininfo" id="maininfo")     
             div(class="table") 
                 div(class="allinfo")
-                    div(id="app1") Наибольший возраст:
-                    div(id="app2") Наибольший бюджет:
-                    div(id="app3") Количество мужчин:
-                    div(id="app4") Количество женщин:
+                    div(id="app1" class="client__age") Наибольший возраст:
+                    div(id="app2" class="client__check") Наибольший бюджет:
+                    div(id="app3" class="client__man") Количество мужчин:
+                    div(id="app4" class="client__woman") Количество женщин:
                     
-                table(id="app" border="1px") 
-
+                table(id="app" class="client__table" border="1px") 
                     tr
-                        th Имя
-                        th Компания
-                        th Email
-                        th Телефон
-                        th Баланс
-                        th Дата регистрации
-                        th Удалить
+                        td Имя
+                        td Компания
+                        td Email
+                        td Телефон
+                        td Баланс
+                        td Дата регистрации
+                        td Удалить
                 button(class="button-top") Вернуться к началу
         script(src="./assets/js/app.js")

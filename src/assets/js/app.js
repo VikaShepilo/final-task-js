@@ -112,26 +112,24 @@ formRegistration.addEventListener("submit", function(e){
     }
     if (inputpasreg.value == '') {
         inputpasreg.focus() 
-        inputpasreg.value == re2.test(String(inputpasreg.value)))
+        inputpasreg.value == re2.test(String(inputpasreg.value))
     }
     if (inputemreg.value == ''){
         inputemreg.focus() 
         inputemreg.value == re.test(String(inputemreg.value)) 
     }
-    // if (inputpasreg.value != re2.test(String(inputpasreg.value))) {
-    //     errRegistration.innerHTML = 'Пароль не верен!'
-    // }
+    
     if (inputpasreg.value != inputpas2reg.value) {
         errRegistration.innerHTML = 'Пароли не совпадают!'
     }else {
         inputpasreg.value = localStorage.setItem("password", inputpasreg.value)
         inputemreg.value = localStorage.setItem("email", inputemreg.value)
-        errRegistration.innerHTML = 'Регистрация завершена'
-        inputpas2reg.value = ''
-        inputpasreg.value = ''
-        inputemreg.value = ''
+        errRegistration.innerHTML = 'Регистрация завершена';
+        inputpas2reg.value = '';
+        inputpasreg.value = '';
+        inputemreg.value = '';
     }
-})
+});
 
 let sBrowser, sUsrAg = navigator.userAgent;
 if (sUsrAg.indexOf("Firefox") > -1) {
@@ -154,25 +152,28 @@ if (sUsrAg.indexOf("Firefox") > -1) {
     } else {
         sBrowser = "unknown";
     }
-document.getElementById('maininfo').innerHTML = sBrowser
+document.getElementById('maininfo').innerHTML = sBrowser;
 
 main.addEventListener('click', function() {
     table.style.display = 'none';
     maininfo.style.display = 'block';
-})
+});
 
 tabledisplay.addEventListener('click', function() {
     maininfo.style.display = 'none';
     table.style.display = 'block';
-})
+});
 
-let url = 'https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1b/raw/677516ee3bd278f7e3d805108596ca431d00b629/db.json'
+let url = 'https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1b/raw/677516ee3bd278f7e3d805108596ca431d00b629/db.json';
 
 let arr = []
 let arrAge = []
 let arrBalance = []
-let male = 0;
-let female = 0;
+let clTable = document.querySelector('.client__table')
+let clMan = document.querySelector('.client__man')
+let clWoman = document.querySelector('.client__woman')
+let clAge = document.querySelector('.client__age')
+let clCheck = document.querySelector('.client__check')
 
 function convertDate(inputDate) {
     let date = inputDate.substring(0,10)
@@ -180,19 +181,24 @@ function convertDate(inputDate) {
     return d.toLocaleDateString()
 }
 
-function returnMaxAge(age) {
-    return Math.max.apply(null, age)
+function gender() {
+	let male = 0
+	let female = 0
+	arr.forEach(el => el.gender == 'male' ? male++ : female++)
+	clMan.innerHTML = 'Количество мужчин: ' + male;
+	clWoman.innerHTML = 'Количество женщин: ' + female;
 }
 
-function returnMaxBalance(balance) {
-    let newArrBalance = balance.map(function(maoney) {
-        maoney = maoney.slice(1, 6)
-        maoney = Number(maoney.replace(/,/gi, '.'))
-        return maoney
-    })
-    let maxBalance = Math.max.apply(null, newArrBalance)
-    maxBalance = '$' + maxBalance
-    return maxBalance
+function returnMaxAge() {
+    let age = 0
+	arr.forEach(el =>  +el.age > +age ? age = +el.age : age)
+	clAge.innerHTML = 'Наибольший возраст: ' + age;
+}
+
+function returnMaxBalance() {
+    let age = Object.keys(arr).reduce((acc, curr) =>
+	acc.balance ? (arr[curr].balance > acc.balance ? arr[curr] : acc) : arr[curr], 0);
+	clCheck.innerHTML = 'Наибольший баланс: ' + age.balance;
 }
 
 
@@ -204,52 +210,43 @@ fetch(url)
         createTable()
         function createTable() {
             arr.forEach((e) => {
-                let el = document.createElement('tr')
-                el.innerHTML = `<td>${e.name} 
-                                <td>${e.company} 
-                                <td>${e.email} 
-                                <td>${e.phone}
-                                <td>${e.balance} 
-                                <td>${convertDate(e.registered)} 
-                                <td>
-                                    <button class="button-del"> 
-                                        Delete
-                                    </button>`           
-
-                document.getElementById('app').appendChild(el)
-                if (e.isActive == false) el.style.backgroundColor = "#ffe4c4"
-
-                returnMaxAge()
-                returnMaxBalance()
-                if (e.gender == "male") ++male
-                if (e.gender == "female") ++female
-                investorDelet()
+                let tableCreate = document.createElement('tr')
+                tableCreate.innerHTML = `<td>${e.name} 
+                                        <td>${e.company} 
+                                        <td>${e.email} 
+                                        <td>${e.phone}
+                                        <td>${e.balance} 
+                                        <td>${convertDate(e.registered)} 
+                                        <td>
+                                            <button class="button-del"> 
+                                                Delete
+                                            </button>`           
+                clTable.appendChild(tableCreate)
+                if (e.isActive == false) tableCreate.style.backgroundColor = "#ffe4c4"  
             })
-        
+            returnMaxAge()
+            returnMaxBalance()
+            gender()
+            clDelet()
         }
-        
-        document.getElementById('app1').innerHTML += returnMaxAge(arrAge)
-        document.getElementById('app2').innerHTML += returnMaxBalance(arrBalance)
-        document.getElementById('app3').innerHTML += male
-        document.getElementById('app4').innerHTML += female
 
-        function investorDelet() {
-			document.querySelectorAll(".button-del").forEach((elem,indx) => { 
+        function clDelet() {
+			document.querySelectorAll(".button-del").forEach((elem, ind) => { 
 				elem.addEventListener('click', function () { 
 					if (confirm("Вы хотите удалить элемент со страницы?")) { 
-						this.closest('tr').parentElement.removeChild(a);
-						arr.forEach((e,i) => { 
-							if(indx-1 == i) arr.splice(i,1)
+						let del = this.closest('tr');
+                        del.parentElement.removeChild(del);
+						arr.forEach((e, i) => { 
+							if (ind == i) arr.splice(i, 1)
 						})
-						document.getElementById('app').innerHTML = `<td> Имя
-															<td> Компания
-															<td> Email
-															<td> Телефон
-															<td> Баланс
-															<td> Дата регистрации
-															<td> Пол
-															<td> Возраст`
-						document.getElementById('app').style.backgroundColor = "#ffe4c4";
+						clTable.innerHTML = `<td> Имя
+											<td> Компания
+											<td> Email
+											<td> Телефон
+											<td> Баланс
+											<td> Дата регистрации
+											<td> Удалить`
+                        // clTable.style.backgroundColor = "#ffe4c4";
 						createTable() 
 					}
 				})
