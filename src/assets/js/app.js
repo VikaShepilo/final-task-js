@@ -1,22 +1,22 @@
 function initMap() {
-    var pos = {lat: 53.909129, lng: 27.470102}
-    var pos1 = {lat: 53.908344, lng: 27.484478}
-    var pos2 = {lat: 53.907308, lng: 27.492482}
+    let pos = {lat: 53.909129, lng: 27.470102}
+    let pos1 = {lat: 53.908344, lng: 27.484478}
+    let pos2 = {lat: 53.907308, lng: 27.492482}
 
-    var opt = {
+    let opt = {
         center: pos1,
         zoom: 14,
     };
 
-    var map = new google.maps.Map(document.getElementById("map"), opt);
+    let map = new google.maps.Map(document.getElementById("map"), opt);
 
-    var marker = new google.maps.Marker({ 
+    let marker = new google.maps.Marker({ 
         map: map,
         position: pos,
         title: "OJJO"
     });
 
-    var info = new google.maps.InfoWindow({ 
+    let info = new google.maps.InfoWindow({ 
         content: '<p>ТЦ Скала</p>'
     });
 
@@ -24,13 +24,13 @@ function initMap() {
         info.open(map, marker)
     });
 
-    var marker1 = new google.maps.Marker({
+    let marker1 = new google.maps.Marker({
         map: map,
         position: pos1,
         title: "OJJO"
     });
 
-    var info1 = new google.maps.InfoWindow({
+    let info1 = new google.maps.InfoWindow({
         content: '<p>ТЦ Тивали</p>'
     });
 
@@ -38,13 +38,13 @@ function initMap() {
         info1.open(map, marker1)
     });
 
-    var marker2 = new google.maps.Marker({
+    let marker2 = new google.maps.Marker({
         map: map,
         position: pos2,
         title: "OJJO"
     });
 
-    var info2 = new google.maps.InfoWindow({
+    let info2 = new google.maps.InfoWindow({
         content: '<p>Раковский</p>'
     });
 
@@ -53,11 +53,10 @@ function initMap() {
     });    
 }
 
-let allforms = document.querySelector('.allforms');
+let allforms = document.querySelector('.allForms');
 let form = document.querySelector('.prompt-form');
 let formRegistration = document.querySelector('.prompt-form2');
 let re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-let re2 = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 let tabledisplay = document.querySelector('.tabledisplay');
 let table = document.querySelector('.table');
 let main = document.querySelector('.main');
@@ -73,11 +72,6 @@ let inputpas = document.querySelector('.prompt-password');
 let inputemreg = document.querySelector('.prompt-email-registration');
 let inputpasreg = document.querySelector('.prompt-password-registration');
 let inputpas2reg = document.querySelector('.prompt-password2-registration');
-let exit = document.querySelector('.exit')
-
-exit.addEventListener('click', function() {
-    document.close()
-})
 
 tab1.addEventListener("click", function() {
     divreg.style.display = 'none';
@@ -105,30 +99,35 @@ form.addEventListener("submit", function(e){
     }
 })
 
+
+
 formRegistration.addEventListener("submit", function(e){
     e.preventDefault();
+    let isValidInput = inputpasreg.value.match(/[\w\W]{8,}/) && inputpasreg.value.match(/[*^!]/) && (inputpasreg.value.match(/[A-Z]/g).length>=1) && (inputpasreg.value.match(/[\d]/g).length>=1) && inputpasreg.value.match(/[a-z]/)
+    
     if (inputpas2reg.value == '') {
         inputpas2reg.focus()
     }
     if (inputpasreg.value == '') {
         inputpasreg.focus() 
-        inputpasreg.value == re2.test(String(inputpasreg.value))
     }
     if (inputemreg.value == ''){
         inputemreg.focus() 
         inputemreg.value == re.test(String(inputemreg.value)) 
     }
-    
+    // if (isValidInput) {
+    //     console.log('Пароль валиден')
+    // };
     if (inputpasreg.value != inputpas2reg.value) {
-        errRegistration.innerHTML = 'Пароли не совпадают!'
-    }else {
-        inputpasreg.value = localStorage.setItem("password", inputpasreg.value)
-        inputemreg.value = localStorage.setItem("email", inputemreg.value)
+        errRegistration.innerHTML = 'Пароли не совпадают!';
+    } esle{
+        inputpasreg.value = localStorage.setItem("password", inputpasreg.value);
+        inputemreg.value = localStorage.setItem("email", inputemreg.value);
         errRegistration.innerHTML = 'Регистрация завершена';
         inputpas2reg.value = '';
         inputpasreg.value = '';
         inputemreg.value = '';
-    }
+    };
 });
 
 let sBrowser, sUsrAg = navigator.userAgent;
@@ -152,7 +151,7 @@ if (sUsrAg.indexOf("Firefox") > -1) {
     } else {
         sBrowser = "unknown";
     }
-document.getElementById('maininfo').innerHTML = sBrowser;
+document.getElementById('maininfo').innerHTML = 'Добро пожаловать на главный экран, сегодня вход был осуществлен через ' + sBrowser;
 
 main.addEventListener('click', function() {
     table.style.display = 'none';
@@ -164,16 +163,20 @@ tabledisplay.addEventListener('click', function() {
     table.style.display = 'block';
 });
 
+document.querySelector('.exit').addEventListener('click', function() {
+    window.location.href='index.html'
+});
+
 let url = 'https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1b/raw/677516ee3bd278f7e3d805108596ca431d00b629/db.json';
 
 let arr = []
 let arrAge = []
 let arrBalance = []
-let clTable = document.querySelector('.client__table')
-let clMan = document.querySelector('.client__man')
-let clWoman = document.querySelector('.client__woman')
-let clAge = document.querySelector('.client__age')
-let clCheck = document.querySelector('.client__check')
+let clTable = document.querySelector('.clientTable')
+let clMan = document.querySelector('.clientMan')
+let clWoman = document.querySelector('.clientWoman')
+let clAge = document.querySelector('.clientAge')
+let clCheck = document.querySelector('.clientCheck')
 
 function convertDate(inputDate) {
     let date = inputDate.substring(0,10)
@@ -181,7 +184,7 @@ function convertDate(inputDate) {
     return d.toLocaleDateString()
 }
 
-function gender() {
+function returnGender() {
 	let male = 0
 	let female = 0
 	arr.forEach(el => el.gender == 'male' ? male++ : female++)
@@ -201,7 +204,11 @@ function returnMaxBalance() {
 	clCheck.innerHTML = 'Наибольший баланс: ' + age.balance;
 }
 
-
+function returnAllInfo() {
+    returnMaxAge()
+    returnMaxBalance()
+    returnGender()
+}
 
 fetch(url)
     .then(result => result.json())
@@ -224,9 +231,7 @@ fetch(url)
                 clTable.appendChild(tableCreate)
                 if (e.isActive == false) tableCreate.style.backgroundColor = "#ffe4c4"  
             })
-            returnMaxAge()
-            returnMaxBalance()
-            gender()
+            returnAllInfo()
             clDelet()
         }
 
@@ -246,14 +251,12 @@ fetch(url)
 											<td> Баланс
 											<td> Дата регистрации
 											<td> Удалить`
-                        // clTable.style.backgroundColor = "#ffe4c4";
 						createTable() 
 					}
 				})
 			})
 		}
     })
-
 
 let buttonTop = document.querySelector('.button-top')
 buttonTop.addEventListener("click", () => { 

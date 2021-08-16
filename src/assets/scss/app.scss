@@ -571,7 +571,7 @@
     color: $c-add;
     text-align: center;
 }
-.allforms {
+.allForms {
     
     background: $c-add;
     width: 400px;
@@ -590,6 +590,7 @@
 .tab-1,
 .tab-2 {
     margin: 2rem;
+    cursor: pointer;
 }
 #prompt-form-container {
 
@@ -625,6 +626,7 @@
     width: 33%;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 }
 .content{
     width: 130px;
@@ -637,11 +639,11 @@
     font-size: 1rem;
     color: red;
 }
-.table{
+.tableAll{
     font-size: 1rem;
     display: none;
 }
-.allinfo{
+.allInfo{
     padding: 3rem 0;
 }
 .divreg{
